@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.Web", "Prot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.Api", "ProtonAnalytics.Api\ProtonAnalytics.Api.csproj", "{8137256A-58BE-45DA-B52E-DF3AF331FCEF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{A93426A5-72CA-48E5-B8EE-2D8FA6541133}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{8957CB0C-4768-41B7-91F5-09C9F73B7AD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.Api.FunctionalTests", "ProtonAnalytics.Api.FunctionalTests\ProtonAnalytics.Api.FunctionalTests.csproj", "{FA339760-1787-4C07-9EB3-69526CB55DED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +27,17 @@ Global
 		{8137256A-58BE-45DA-B52E-DF3AF331FCEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8137256A-58BE-45DA-B52E-DF3AF331FCEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8137256A-58BE-45DA-B52E-DF3AF331FCEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA339760-1787-4C07-9EB3-69526CB55DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA339760-1787-4C07-9EB3-69526CB55DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA339760-1787-4C07-9EB3-69526CB55DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA339760-1787-4C07-9EB3-69526CB55DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D67861E3-7F32-4FCE-8058-ACE296786AE8} = {8957CB0C-4768-41B7-91F5-09C9F73B7AD4}
+		{8137256A-58BE-45DA-B52E-DF3AF331FCEF} = {A93426A5-72CA-48E5-B8EE-2D8FA6541133}
+		{FA339760-1787-4C07-9EB3-69526CB55DED} = {A93426A5-72CA-48E5-B8EE-2D8FA6541133}
 	EndGlobalSection
 EndGlobal
