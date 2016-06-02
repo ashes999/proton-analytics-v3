@@ -42,6 +42,17 @@ namespace ProtonAnalytics.Api.FunctionalTests.Controllers
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, response.Content);
 
             // Log in
+            request = new RestRequest("Account/Login", Method.POST);
+            request.AddObject(new LoginViewModel()
+            {
+                Email = userName,
+                Password = password,
+                RememberMe = false
+            });
+
+            response = client.Execute(request);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, response.Content);
+            Assert.That(response.Cookies.Count, Is.GreaterThan(0));
         }
     }
 }

@@ -17,6 +17,7 @@ using ProtonAnalytics.Api.Models;
 using ProtonAnalytics.Api.Providers;
 using ProtonAnalytics.Api.Results;
 
+
 namespace ProtonAnalytics.Api.Controllers
 {
     [Authorize]
@@ -25,15 +26,17 @@ namespace ProtonAnalytics.Api.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private ApplicationSignInManager _signInManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager,
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
             UserManager = userManager;
+            SignInManager = signInManager;
             AccessTokenFormat = accessTokenFormat;
         }
 
@@ -340,6 +343,32 @@ namespace ProtonAnalytics.Api.Controllers
             return Ok();
         }
 
+        // POST Account/Login
+        [AllowAnonymous]
+        [Route("LogIn")]
+        public async Task<IHttpActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = UserManager.FindByEmail(model.Email);
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            if (result == SignInStatus.Success)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+        }
+
+
         // POST Account/RegisterExternal
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
@@ -371,6 +400,18 @@ namespace ProtonAnalytics.Api.Controllers
                 return GetErrorResult(result); 
             }
             return Ok();
+        }
+
+        protected ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
         }
 
         protected override void Dispose(bool disposing)
