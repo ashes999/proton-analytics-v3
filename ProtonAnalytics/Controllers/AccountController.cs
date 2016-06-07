@@ -25,6 +25,7 @@ namespace ProtonAnalytics.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+        private ApplicationSignInManager _signInManager;
 
         public AccountController()
         {
@@ -46,6 +47,18 @@ namespace ProtonAnalytics.Controllers
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        protected ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.Current.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -316,6 +329,31 @@ namespace ProtonAnalytics.Controllers
             }
 
             return logins;
+        }
+
+        // POST api/Account/Login
+        [AllowAnonymous]
+        [Route("LogIn")]
+        public async Task<IHttpActionResult> Login(LoginBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = UserManager.FindByEmail(model.Email);
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, false, shouldLockout: false);
+            if (result == SignInStatus.Success)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
 
         // POST api/Account/Register
