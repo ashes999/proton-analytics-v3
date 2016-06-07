@@ -50,6 +50,16 @@ namespace ProtonAnalytics.FunctionalTests.Controllers
             response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.That(response.Cookies.Count, Is.GreaterThan(0));
+
+            // Log out
+            request = new RestRequest("Account/LogOut", Method.POST);
+            foreach (var cookie in response.Cookies)
+            {
+                request.AddCookie(cookie.Name, cookie.Value);
+            }
+            response = client.Execute(request);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.That(response.Cookies.Count, Is.EqualTo(0));
         }
     }
 }
