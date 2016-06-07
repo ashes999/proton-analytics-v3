@@ -18,7 +18,7 @@ namespace ProtonAnalytics.Api.FunctionalTests.Controllers
     {
         // Workflow test
         [Test]
-        public void UserCanRegisterLogIn()
+        public void UserCanRegisterLogInAndLogOut()
         {
             var userName = "test@test.com";
             var password = "Super SECURE password!?1!";
@@ -53,6 +53,11 @@ namespace ProtonAnalytics.Api.FunctionalTests.Controllers
             response = client.Execute(request);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, response.Content);
             Assert.That(response.Cookies.Count, Is.GreaterThan(0));
+
+            request = new RestRequest("Account/LogOut", Method.POST);
+            response = client.Execute(request);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, response.Content);
+            Assert.That(response.Cookies.Count, Is.EqualTo(0));
         }
     }
 }

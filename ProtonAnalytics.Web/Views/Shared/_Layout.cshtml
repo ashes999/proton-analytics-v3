@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var errorHtml = "";
+    if (ViewBag.Error != null)
+    {
+        errorHtml = Html.Raw(string.Format("<div style='border: 8px solid red;'>{0}</div>", ViewBag.Error));
+    }
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,6 +37,7 @@
         </div>
     </div>
     <div class="container body-content">
+        @errorHtml
         @RenderBody()
         <hr />
         <footer>

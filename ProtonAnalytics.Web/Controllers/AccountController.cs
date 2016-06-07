@@ -83,7 +83,8 @@ namespace ProtonAnalytics.Web.Controllers
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                // TODO: support model.RememberMe
+                FormsAuthentication.SetAuthCookie(model.Email, false);
                 HttpContext.User = new GenericPrincipal(new GenericIdentity(model.Email), null);
                 return RedirectToLocal(returnUrl);
             }
@@ -389,12 +390,17 @@ namespace ProtonAnalytics.Web.Controllers
         }
 
         //
-        // POST: /Account/LogOff
+        // POST: /Account/LogOut
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public ActionResult LogOut()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            var userName = HttpContext.User.Identity.Name;
+            var authCookie = FormsAuthentication.GetAuthCookie(userName, false);
+            var request = new RestRequest("Account/LogOut", Method.POST);
+            request.AddCookie(authCookie.Name, authCookie.Value);
+
+            var response = this.restClient.Execute(request);
             return RedirectToAction("Index", "Home");
         }
 

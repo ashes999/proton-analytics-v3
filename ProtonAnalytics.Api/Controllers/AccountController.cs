@@ -69,10 +69,11 @@ namespace ProtonAnalytics.Api.Controllers
             };
         }
 
-        // POST Account/Logout
-        [Route("Logout")]
-        public IHttpActionResult Logout()
+        // POST Account/LogOut
+        [Route("LogOut")]
+        public IHttpActionResult LogOut()
         {
+            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
@@ -345,7 +346,7 @@ namespace ProtonAnalytics.Api.Controllers
 
         // POST Account/Login
         [AllowAnonymous]
-        [Route("LogIn")]
+        [Route("Login")]
         public async Task<IHttpActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
