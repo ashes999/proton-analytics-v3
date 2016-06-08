@@ -35,8 +35,7 @@ namespace ProtonAnalytics.Controllers
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                // TODO: support model.RememberMe
-                FormsAuthentication.SetAuthCookie(model.Email, false);
+                FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                 HttpContext.User = new GenericPrincipal(new GenericIdentity(model.Email), null);
                 return Redirect("~/");
             }
