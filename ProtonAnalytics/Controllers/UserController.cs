@@ -45,5 +45,16 @@ namespace ProtonAnalytics.Controllers
                 return View(model);
             }
         }
+
+        [HttpPost]
+        public ActionResult LogOut()
+        {
+            var request = new RestRequest("Account/Logout", Method.POST);
+            var client = new RestClient(ConfigurationManager.AppSettings["ApiRootUrl"]);
+            client.Execute(request);
+            FormsAuthentication.SignOut();
+
+            return Redirect("~/");
+        }
     }
 }
