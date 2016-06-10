@@ -1,18 +1,16 @@
-﻿using ProtonAnalytics.Models;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ProtonAnalytics.Models;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
 using System.Net;
 using System.Security.Principal;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 
 namespace ProtonAnalytics.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ProtonAnalyticsController
     {
         public ActionResult LogIn()
         {
@@ -27,11 +25,7 @@ namespace ProtonAnalytics.Controllers
                 return View(model);
             }
 
-            var request = new RestRequest("Account/Login", Method.POST);
-            request.AddObject(model);
-
-            var client = new RestClient(ConfigurationManager.AppSettings["ApiRootUrl"]);
-            var response = client.Execute(request);
+            var response = ExecuteApiCall("Account/Login", Method.POST, model);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -49,12 +43,42 @@ namespace ProtonAnalytics.Controllers
         [HttpPost]
         public ActionResult LogOut()
         {
-            var request = new RestRequest("Account/Logout", Method.POST);
-            var client = new RestClient(ConfigurationManager.AppSettings["ApiRootUrl"]);
-            client.Execute(request);
+            var response = ExecuteApiCall("Account/Logout", Method.POST);
             FormsAuthentication.SignOut();
-
             return Redirect("~/");
+        }
+
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = ExecuteApiCall("Account/Register", Method.POST, model);
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    AddFlash("Registration complete. Please log in.");
+                    return RedirectToAction("LogIn");
+                }
+                else
+                {
+                    var registrationError = this.GetWebApiErrorDetails(response);
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
     }
 }
