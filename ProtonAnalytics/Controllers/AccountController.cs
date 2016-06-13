@@ -33,11 +33,12 @@ namespace ProtonAnalytics.Controllers
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IAuthenticationManager authenticationManager)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IAuthenticationManager authenticationManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
             this._authenticationManager = authenticationManager;
+            this._signInManager = signInManager;
         }
 
         public ApplicationUserManager UserManager
