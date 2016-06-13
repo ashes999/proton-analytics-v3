@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 namespace ProtonAnalytics.FunctionalTests.Controllers
 {
     [TestFixture]
-    class AccountControllerTest
+    class AccountControllerTests
     {
         // Workflow test
         [Test]
-        public void UserCanRegisterLogInAndLogOut()
+        public void UserCanRegisterLogInAndLogout()
         {
             var userName = "test@test.com";
-            var password = "Super SECURE password!?1!";
+            var password = "P@ssw0rd";
 
             // Delete the user if they already exists
             DatabaseFacade.ExecuteQuery("DELETE FROM AspNetUsers WHERE email = @email", new { email = userName });

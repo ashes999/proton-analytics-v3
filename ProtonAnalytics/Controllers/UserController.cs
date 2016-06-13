@@ -43,7 +43,7 @@ namespace ProtonAnalytics.Controllers
         [HttpPost]
         public ActionResult LogOut()
         {
-            var response = ExecuteApiCall("Account/Logout", Method.POST);
+            var response = ExecuteApiCall("Account/LogOut", Method.POST);
             FormsAuthentication.SignOut();
             return Redirect("~/");
         }
@@ -74,6 +74,7 @@ namespace ProtonAnalytics.Controllers
                 else
                 {
                     var registrationError = this.GetWebApiErrorDetails(response);
+                    ModelState.AddModelError("", registrationError);
                 }
             }
 

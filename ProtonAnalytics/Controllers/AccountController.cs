@@ -26,16 +26,18 @@ namespace ProtonAnalytics.Controllers
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
+        private IAuthenticationManager _authenticationManager;
 
         public AccountController()
         {
         }
 
         public AccountController(ApplicationUserManager userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IAuthenticationManager authenticationManager)
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+            this._authenticationManager = authenticationManager;
         }
 
         public ApplicationUserManager UserManager
@@ -80,8 +82,8 @@ namespace ProtonAnalytics.Controllers
         }
 
         // POST api/Account/Logout
-        [Route("Logout")]
-        public IHttpActionResult Logout()
+        [Route("LogOut")]
+        public IHttpActionResult LogOut()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
@@ -426,7 +428,10 @@ namespace ProtonAnalytics.Controllers
 
         private IAuthenticationManager Authentication
         {
-            get { return Request.GetOwinContext().Authentication; }
+            get
+            {
+                return _authenticationManager ?? Request.GetOwinContext().Authentication;
+            }
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
