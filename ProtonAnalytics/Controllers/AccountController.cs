@@ -339,7 +339,7 @@ namespace ProtonAnalytics.Controllers
         [Route("LogIn")]
         public async Task<IHttpActionResult> Login(LoginBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.Password))
             {
                 return BadRequest(ModelState);
             }
@@ -364,7 +364,7 @@ namespace ProtonAnalytics.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.Password) || string.IsNullOrEmpty(model.ConfirmPassword))
             {
                 return BadRequest(ModelState);
             }
