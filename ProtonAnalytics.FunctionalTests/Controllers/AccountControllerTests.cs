@@ -4,6 +4,7 @@ using ProtonAnalytics.Models;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -24,7 +25,7 @@ namespace ProtonAnalytics.FunctionalTests.Controllers
             // Delete the user if they already exists
             DatabaseFacade.ExecuteQuery("DELETE FROM AspNetUsers WHERE email = @email", new { email = userName });
 
-            var client = new RestSharp.RestClient("http://localhost/ProtonAnalytics/api");
+            var client = new RestSharp.RestClient(ConfigurationManager.AppSettings["ApiRootUrl"]);
 
             // Register
             var request = new RestRequest("Account/Register", Method.POST);
