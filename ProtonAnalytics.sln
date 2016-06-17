@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.FunctionalT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.UnitTests", "ProtonAnalytics.UnitTests\ProtonAnalytics.UnitTests.csproj", "{B648A028-22EF-4D26-8091-70A707B63492}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.Migrations", "ProtonAnalytics.Migrations\ProtonAnalytics.Migrations.csproj", "{727559E0-A291-4FFC-8967-2DAD0F0239EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B648A028-22EF-4D26-8091-70A707B63492}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B648A028-22EF-4D26-8091-70A707B63492}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B648A028-22EF-4D26-8091-70A707B63492}.Release|Any CPU.Build.0 = Release|Any CPU
+		{727559E0-A291-4FFC-8967-2DAD0F0239EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{727559E0-A291-4FFC-8967-2DAD0F0239EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{727559E0-A291-4FFC-8967-2DAD0F0239EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{727559E0-A291-4FFC-8967-2DAD0F0239EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
