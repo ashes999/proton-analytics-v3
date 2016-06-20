@@ -30,6 +30,7 @@ namespace ProtonAnalytics.Controllers.Web
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
+                Session["AuthCookies"] = response.Cookies;
                 FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
                 HttpContext.User = new GenericPrincipal(new GenericIdentity(model.Email), null);
                 return Redirect("~/");

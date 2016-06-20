@@ -17,6 +17,8 @@ namespace ProtonAnalytics.Migrations.Migrations
     [Migration(1)]
     public class CreateUserTables : Migration
     {
+        private const string UnusedUserName = "initial@deleteme.com";
+
         public override void Up()
         {
             // Invoke Entity Framework to create Aspnet_* tables
@@ -28,7 +30,7 @@ namespace ProtonAnalytics.Migrations.Migrations
 
             request.AddObject(new RegisterBindingModel()
             {
-                Email = "initial@deleteme.com",
+                Email = UnusedUserName,
                 Password = "P@ssw0rd",
                 ConfirmPassword = "P@ssw0rd"
             });
@@ -42,7 +44,7 @@ namespace ProtonAnalytics.Migrations.Migrations
                 using (var conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    conn.Execute("DELETE FROM [AspNetUsers]");
+                    conn.Execute("DELETE FROM [AspNetUsers] WHERE Email = @email", new { email = UnusedUserName });
                 }
             }
             else

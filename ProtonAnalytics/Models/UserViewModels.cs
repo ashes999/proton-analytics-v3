@@ -112,4 +112,12 @@ namespace ProtonAnalytics.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+    public class UserWithIdModel
+    {
+        public string Id { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
+    }
 }

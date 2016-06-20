@@ -20,9 +20,8 @@ using ProtonAnalytics.Helpers.Routing;
 
 namespace ProtonAnalytics.Controllers.Api
 {
-    [Authorize]
     [ApiRoutePrefix("Account")]
-    public class AccountApiController : ApiController
+    public class AccountApiController : ProtonAnalyticsApiController
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;

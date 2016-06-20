@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ProtonAnalytics.Models.GameModel>
+
+@{
+    ViewBag.Title = "Games";
+}
+
+@* TODO: angular!!!! *@
+<ul>
+    @foreach (ProtonAnalytics.Models.GameModel model in Model)
+    {
+        <li><strong>@(model.Name)</strong></li>
+    }
+</ul>

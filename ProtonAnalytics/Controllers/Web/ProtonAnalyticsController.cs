@@ -21,6 +21,18 @@ namespace ProtonAnalytics.Controllers.Web
             }
 
             var client = new RestClient(ConfigurationManager.AppSettings["ApiRootUrl"]);
+
+            var cookies = Session["AuthCookies"] as IList<RestResponseCookie>;
+            if (cookies != null)
+            {
+                client.CookieContainer = new System.Net.CookieContainer();
+
+                foreach (var cookie in cookies)
+                {
+                    client.CookieContainer.Add(new System.Net.Cookie(cookie.Name, cookie.Value, cookie.Path, cookie.Domain));
+                }
+            }
+
             var response = client.Execute(request);
             return response;
         }
