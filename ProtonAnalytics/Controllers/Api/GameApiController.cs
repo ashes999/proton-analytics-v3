@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace ProtonAnalytics.Controllers.Api
 {
-    public class GameController : ApiController
+    public class GameApiController : ApiController
     {
     }
 }

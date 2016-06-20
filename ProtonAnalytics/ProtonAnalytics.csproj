@@ -209,11 +209,11 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\Api\AccountController.cs" />
-    <Compile Include="Controllers\Api\GameController.cs" />
+    <Compile Include="Controllers\Api\AccountApiController.cs" />
+    <Compile Include="Controllers\Api\GameApiController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
     <Compile Include="Controllers\Web\ProtonAnalyticsController.cs" />
-    <Compile Include="Controllers\Web\UserController.cs" />
+    <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -284,9 +284,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\User\LogIn.cshtml" />
-    <Content Include="Views\User\_ExternalLoginsList.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Account\LogIn.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsList.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

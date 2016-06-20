@@ -22,18 +22,18 @@ namespace ProtonAnalytics.Controllers.Api
 {
     [Authorize]
     [ApiRoutePrefix("Account")]
-    public class AccountController : ApiController
+    public class AccountApiController : ApiController
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
         private IAuthenticationManager _authenticationManager;
 
-        public AccountController()
+        public AccountApiController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager,
+        public AccountApiController(ApplicationUserManager userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat, IAuthenticationManager authenticationManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;

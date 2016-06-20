@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ProtonAnalytics.FunctionalTests.Controllers
 {
     [TestFixture]
-    class AccountControllerTests
+    class AccountApiControllerTests
     {
         // Workflow test
         [Test]

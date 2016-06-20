@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace ProtonAnalytics.UnitTests.Controllers
 {
     [TestFixture]
-    class AccountControllerTests
+    class AccountApiControllerTests
     {
         [Test]
         public void LogOutLogsOutOfAuthenticationProvider()
@@ -20,7 +20,7 @@ namespace ProtonAnalytics.UnitTests.Controllers
             var authManager = new Mock<IAuthenticationManager>();
             authManager.Setup(a => a.SignOut(CookieAuthenticationDefaults.AuthenticationType));
 
-            var controller = new AccountController(null, null, authManager.Object, null);
+            var controller = new AccountApiController(null, null, authManager.Object, null);
             var view = controller.LogOut();
             Assert.IsTrue(view is System.Web.Http.Results.OkResult);
             authManager.VerifyAll();
@@ -38,7 +38,7 @@ namespace ProtonAnalytics.UnitTests.Controllers
             var signInManager = new Mock<ApplicationSignInManager>(userManager.Object, authManager.Object);
             signInManager.Setup(s => s.PasswordSignInAsync(userName, password, false, false)).ReturnsAsync(Microsoft.AspNet.Identity.Owin.SignInStatus.Success);
 
-            var controller = new AccountController(userManager.Object, null, null, signInManager.Object);
+            var controller = new AccountApiController(userManager.Object, null, null, signInManager.Object);
             var result = controller.Login(new Models.LoginBindingModel() { Email = userName, Password = password });
             result.Wait();
             var view = result.Result;
@@ -60,7 +60,7 @@ namespace ProtonAnalytics.UnitTests.Controllers
             var authManager = new Mock<IAuthenticationManager>();
             var signInManager = new Mock<ApplicationSignInManager>(userManager.Object, authManager.Object);
 
-            var controller = new AccountController(userManager.Object, null, null, signInManager.Object);
+            var controller = new AccountApiController(userManager.Object, null, null, signInManager.Object);
             var model = new Models.LoginBindingModel()
             {
                 Email = email,
@@ -90,7 +90,7 @@ namespace ProtonAnalytics.UnitTests.Controllers
             // Always fail regardless of credentials
             signInManager.Setup(s => s.PasswordSignInAsync(It.IsAny<string>(), It.IsAny<string>(), false, false)).ReturnsAsync(Microsoft.AspNet.Identity.Owin.SignInStatus.Failure);
 
-            var controller = new AccountController(userManager.Object, null, null, signInManager.Object);
+            var controller = new AccountApiController(userManager.Object, null, null, signInManager.Object);
             var result = controller.Login(new Models.LoginBindingModel() { Email = "test@test.com", Password = "P@ssw0rd" });
             result.Wait();
             var view = result.Result;
@@ -111,7 +111,7 @@ namespace ProtonAnalytics.UnitTests.Controllers
             var authManager = new Mock<IAuthenticationManager>();
             var signInManager = new Mock<ApplicationSignInManager>(userManager.Object, authManager.Object);
 
-            var controller = new AccountController(userManager.Object, null, null, signInManager.Object);
+            var controller = new AccountApiController(userManager.Object, null, null, signInManager.Object);
             var model = new Models.RegisterBindingModel()
             {
                 Email = "test@test.com",
@@ -149,7 +149,7 @@ namespace ProtonAnalytics.UnitTests.Controllers
             var authManager = new Mock<IAuthenticationManager>();
             var signInManager = new Mock<ApplicationSignInManager>(userManager.Object, authManager.Object);
 
-            var controller = new AccountController(userManager.Object, null, null, signInManager.Object);
+            var controller = new AccountApiController(userManager.Object, null, null, signInManager.Object);
             var model = new Models.RegisterBindingModel()
             {
                 Email = userName,
@@ -177,7 +177,7 @@ namespace ProtonAnalytics.UnitTests.Controllers
             var authManager = new Mock<IAuthenticationManager>();
             var signInManager = new Mock<ApplicationSignInManager>(userManager.Object, authManager.Object);
 
-            var controller = new AccountController(userManager.Object, null, null, signInManager.Object);
+            var controller = new AccountApiController(userManager.Object, null, null, signInManager.Object);
             var model = new Models.RegisterBindingModel()
             {
                 Email = "test@test.com",
