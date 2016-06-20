@@ -16,11 +16,12 @@ using Microsoft.Owin.Security.OAuth;
 using ProtonAnalytics.Models;
 using ProtonAnalytics.Providers;
 using ProtonAnalytics.Results;
+using ProtonAnalytics.Helpers.Routing;
 
-namespace ProtonAnalytics.Controllers
+namespace ProtonAnalytics.Controllers.Api
 {
     [Authorize]
-    [RoutePrefix("api/Account")]
+    [ApiRoutePrefix("Account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";

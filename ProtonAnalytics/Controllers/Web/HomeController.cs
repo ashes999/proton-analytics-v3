@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ProtonAnalytics.Controllers
+namespace ProtonAnalytics.Controllers.Web
 {
     public class HomeController : Controller
     {

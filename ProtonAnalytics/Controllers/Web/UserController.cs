@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ProtonAnalytics.Controllers.Web;
 using ProtonAnalytics.Models;
 using RestSharp;
 using System.Net;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace ProtonAnalytics.Controllers
+namespace ProtonAnalytics.Controllers.Web
 {
     public class UserController : ProtonAnalyticsController
     {

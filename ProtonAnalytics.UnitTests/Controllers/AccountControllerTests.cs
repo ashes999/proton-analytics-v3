@@ -4,6 +4,7 @@ using Microsoft.Owin.Security.Cookies;
 using Moq;
 using NUnit.Framework;
 using ProtonAnalytics.Controllers;
+using ProtonAnalytics.Controllers.Api;
 using ProtonAnalytics.Models;
 using System.Linq;
 using System.Threading.Tasks;

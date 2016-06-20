@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace ProtonAnalytics.Controllers
+namespace ProtonAnalytics.Controllers.Api
 {
     public class GameController : ApiController
     {
