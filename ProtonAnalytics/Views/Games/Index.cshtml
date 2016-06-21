@@ -4,10 +4,11 @@
     ViewBag.Title = "Games";
 }
 
-@* TODO: angular!!!! *@
-<ul>
-    @foreach (ProtonAnalytics.Models.GameModel model in Model)
-    {
-        <li><strong>@(model.Name)</strong></li>
-    }
-</ul>
+@Scripts.Render("~/bundles/angularjs")
+@Scripts.Render("~/Scripts/angular/gamesApp.js")
+
+<div ng-app="gamesApp">    
+    <ul ng-controller="GamesListController as controller">
+        <li ng-repeat="game in controller.games"><strong>{{ game.name }}</strong></li>
+    </ul>    
+</div>

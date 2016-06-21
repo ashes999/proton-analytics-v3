@@ -13,9 +13,8 @@ namespace ProtonAnalytics.Controllers.Web
         // GET: Game
         public ActionResult Index()
         {
-            var response = this.ExecuteApiCall("Game/GetAll");
-            var games = JsonConvert.DeserializeObject<IEnumerable<GameModel>>(response.Content);
-            return View(games);
+            // API calls are done by Angular directly
+            return View();
         }
     }
 }
