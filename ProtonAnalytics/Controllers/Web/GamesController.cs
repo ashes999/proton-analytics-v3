@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace ProtonAnalytics.Controllers.Web
 {
     [Authorize]
-    public class GamesController : ProtonAnalyticsController
+    public class GamesController : AbstractAuthenticatedController
     {
         // GET: Game
         public ActionResult Index()

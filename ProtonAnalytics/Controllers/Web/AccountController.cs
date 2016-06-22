@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace ProtonAnalytics.Controllers.Web
 {
-    public class AccountController : ProtonAnalyticsController
+    public class AccountController : AbstractController
     {
         public ActionResult LogIn()
         {

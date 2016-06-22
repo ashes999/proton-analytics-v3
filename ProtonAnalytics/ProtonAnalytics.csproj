@@ -212,9 +212,10 @@
     <Compile Include="Controllers\Api\AccountApiController.cs" />
     <Compile Include="Controllers\Api\GameApiController.cs" />
     <Compile Include="Controllers\Api\ProtonAnalyticsApiController.cs" />
+    <Compile Include="Controllers\Web\AbstractAuthenticatedController.cs" />
     <Compile Include="Controllers\Web\GamesController.cs" />
     <Compile Include="Controllers\Web\HomeController.cs" />
-    <Compile Include="Controllers\Web\ProtonAnalyticsController.cs" />
+    <Compile Include="Controllers\Web\AbstractController.cs" />
     <Compile Include="Controllers\Web\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

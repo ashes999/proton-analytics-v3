@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ProtonAnalytics.Controllers.Web
 {
-    public class ProtonAnalyticsController : Controller
+    public abstract class AbstractController : Controller
     {
         protected IRestResponse ExecuteApiCall(string actionUrl, RestSharp.Method method = Method.GET, object parameters = null)
         {
