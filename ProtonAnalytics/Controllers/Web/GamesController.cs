@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ProtonAnalytics.Controllers.Web
 {
+    [Authorize]
     public class GamesController : ProtonAnalyticsController
     {
         // GET: Game
