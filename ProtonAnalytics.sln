@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.Migrations"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.DataAccessLayer", "ProtonAnalytics.DataAccessLayer\ProtonAnalytics.DataAccessLayer.csproj", "{45296F1B-AEF3-4BD4-8B4E-DD26B7CCE5BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtonAnalytics.AngularTests", "ProtonAnalytics.AngularTests\ProtonAnalytics.AngularTests.csproj", "{5017A4AD-C7A2-42F4-BF3A-1B5CA3125DBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{45296F1B-AEF3-4BD4-8B4E-DD26B7CCE5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45296F1B-AEF3-4BD4-8B4E-DD26B7CCE5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45296F1B-AEF3-4BD4-8B4E-DD26B7CCE5BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5017A4AD-C7A2-42F4-BF3A-1B5CA3125DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5017A4AD-C7A2-42F4-BF3A-1B5CA3125DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5017A4AD-C7A2-42F4-BF3A-1B5CA3125DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5017A4AD-C7A2-42F4-BF3A-1B5CA3125DBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
