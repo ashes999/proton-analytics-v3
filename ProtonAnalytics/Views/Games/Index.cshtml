@@ -9,6 +9,6 @@
 
 <div ng-app="gamesApp">    
     <ul ng-controller="GamesListController as controller">
-        <li ng-repeat="game in controller.games"><strong>{{ game.name }}</strong></li>
+        <li ng-repeat="game in controller.games"><strong>{{ game.Name }}</strong> ({{ game.Id }})</li>
     </ul>    
 </div>
