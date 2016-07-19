@@ -1,10 +1,20 @@
 ﻿'use strict';
 
 var gamesApp = angular.module('gamesApp', ['ngResource'])
-    .controller("GamesListController", function($resource) {
+    // Inject pre-created resources, not $resource directly
+    .factory('gamesListResource', function ($resource) {
+        return $resource('api/Game/GetAll');
+    })
+
+    // Actual controller
+    .controller("GamesListController", function (gamesListResource) {
         var gamesList = this;
 
-        $resource('api/Game/GetAll', {}).query().$promise.then(function (results) {
+        console.log("Constructor started (list resource = " + gamesListResource + ") ...");
+        // Make sure you're querying api/Game/GetAll
+        gamesListResource.query().$promise.then(function (results) {
             gamesList.games = results;
+            console.log("Got some games: " + JSON.stringify(results));
         })
+        console.log("... done!");
     });

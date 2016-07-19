@@ -1,4 +1,44 @@
-﻿test("exponential math", function () {
-    var res = Math.pow(2, 3);
-    equal(res, 8, "2^3 = 8");
+﻿// For reference: https://github.com/mmanela/chutzpah/blob/master/Samples/Angular/TemplateDirective/chutzpah.json
+
+describe("Hello World test suite", function() {
+    describe("Math tests", function() {
+        it('2^3 = 8', function() {
+            expect(Math.pow(2, 3)).toEqual(8);
+        });
+    });
+});
+
+describe('GamesListController', function() {
+    
+    var gamesListResource, $httpBackend, $controller;
+
+    beforeEach(module('gamesApp'));
+    
+    // The injector unwraps the underscores (_) from around the parameter names when matching
+    beforeEach(inject(function ($injector, _$controller_) {
+        $httpBackend = $injector.get('$httpBackend');
+        gamesListResource = $injector.get('gamesListResource');
+        $controller = _$controller_;
+        return null;
+    }));
+
+    describe('gamesApp unit tests', function() {
+        it('gets all games from gamesListResource', function () {
+
+            var expectedGame = {
+                Id: "B2B0DBFB-DF48-4D94-A360-47A1415E8618",
+                Name: "Super Mario Brozers",
+                OwnerId: "another-fake-guid-here"
+            };
+
+            $httpBackend
+                .whenGET('http://somehost:1234/api/Game/GetAll', expectedGame)
+                .respond(200);
+
+            var actualGames = $controller.games;
+            console.log("AG=" + actualGames + " C=" + $controller + " CG=" + $controller.games);
+            expect(actualGames.length).toEqual(1);
+            expect(actualGames[0]).toEqual([mockGame]);
+        });
+    });
 });

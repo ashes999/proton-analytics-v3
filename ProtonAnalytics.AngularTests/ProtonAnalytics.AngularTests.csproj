@@ -43,14 +43,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\jasmine.css" />
+    <Content Include="Scripts\jasmine-html.js" />
+    <Content Include="Scripts\jasmine.js" />
     <Content Include="Unit\Controllers\GamesListControllerTests.js" />
-    <Content Include="Unit\Controllers\TestTest.js" />
-    <Content Include="Unit\UnitTests.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Integration\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="chutzpah.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

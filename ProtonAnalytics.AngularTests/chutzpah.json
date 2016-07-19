@@ -1,0 +1,14 @@
+﻿{
+  "Framework": "jasmine",
+  "References": [
+    { "Path": "../ProtonAnalytics/Scripts/angular.js" },
+    { "Path": "../ProtonAnalytics/Scripts/angular-mocks.js" },
+    { "Path": "../ProtonAnalytics/Scripts/angular-resource.js" },
+
+    { "Path": "../ProtonAnalytics/Scripts/angular/gamesApp.js"}
+  ],
+  "Tests": [
+    { "Path": "Unit" },
+    { "Path": "Integration" }
+  ]
+}
