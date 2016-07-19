@@ -10,14 +10,14 @@ describe("Hello World test suite", function() {
 
 describe('GamesListController', function() {
     
-    var gamesListResource, $httpBackend, $controller;
+    var $httpBackend, $controller, $resource;
 
     beforeEach(module('gamesApp'));
     
     // The injector unwraps the underscores (_) from around the parameter names when matching
-    beforeEach(inject(function ($injector, _$controller_) {
+    beforeEach(inject(function ($injector, _$controller_, _$resource_) {
         $httpBackend = $injector.get('$httpBackend');
-        gamesListResource = $injector.get('gamesListResource');
+        $resource = _$resource_;
         $controller = _$controller_;
         return null;
     }));
@@ -31,12 +31,15 @@ describe('GamesListController', function() {
                 OwnerId: "another-fake-guid-here"
             };
 
-            $httpBackend
-                .whenGET('http://somehost:1234/api/Game/GetAll', expectedGame)
-                .respond(200);
+            $httpBackend.expectGET("api/Game/GetAll").respond([expectedGame]);
 
+            $controller('GamesListController', {
+                $resource: $resource
+            });
+
+            $httpBackend.flush();
+            
             var actualGames = $controller.games;
-            console.log("AG=" + actualGames + " C=" + $controller + " CG=" + $controller.games);
             expect(actualGames.length).toEqual(1);
             expect(actualGames[0]).toEqual([mockGame]);
         });
