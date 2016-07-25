@@ -33,15 +33,18 @@ describe('GamesListController', function() {
 
             $httpBackend.expectGET("api/Game/GetAll").respond([expectedGame]);
 
-            $controller('GamesListController', {
+            var controller = $controller('GamesListController', {
                 $resource: $resource
             });
 
             $httpBackend.flush();
             
-            var actualGames = $controller.games;
+            var actualGames = controller.games;
             expect(actualGames.length).toEqual(1);
-            expect(actualGames[0]).toEqual([mockGame]);
+            var actual = actualGames[0];
+            expect(actual.Id).toEqual(expectedGame.Id);
+            expect(actual.Name).toEqual(expectedGame.Name);
+            expect(actual.OwnerId).toEqual(expectedGame.OwnerId);
         });
     });
 });
